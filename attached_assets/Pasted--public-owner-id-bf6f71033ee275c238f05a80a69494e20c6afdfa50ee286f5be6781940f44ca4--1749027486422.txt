@@ -1,0 +1,83 @@
+{
+    "public_owner_id": "bf6f71033ee275c238f05a80a69494e20c6afdfa50ee286f5be6781940f44ca4",
+    "voice_id": "5gLuKtB16QIQv1vuSas1",
+    "date_unix": 1748890263,
+    "name": "David - British Radio Host & Storyteller",
+    "accent": "en-british",
+    "gender": "male",
+    "age": "middle_aged",
+    "descriptive": "professional",
+    "use_case": "entertainment_tv",
+    "category": "professional",
+    "language": "en",
+    "locale": null,
+    "description": "Warm, articulate, and captivating, David's voice carries the natural charm of a seasoned British radio host. With a smooth delivery and a storyteller’s cadence, his tone is perfect for narration, podcasting, documentaries, and immersive audio experiences. Whether delivering compelling tales or guiding listeners through thoughtful commentary, David’s voice combines clarity, character, and a trusted presence that holds attention from the first word to the last.",
+    "preview_url": "https://storage.googleapis.com/eleven-public-prod/database/user/wOihWO72HCYE3Hu7iR26d7eedAp1/voices/5gLuKtB16QIQv1vuSas1/CLdl5ZtFJegS008s8khW.mp3",
+    "usage_character_count_1y": 1581915,
+    "usage_character_count_7d": 1581915,
+    "play_api_usage_character_count_1y": 0,
+    "cloned_by_count": 474,
+    "rate": 1,
+    "fiat_rate": null,
+    "free_users_allowed": true,
+    "live_moderation_enabled": false,
+    "featured": false,
+    "verified_languages": [
+        {
+            "language": "en",
+            "model_id": "eleven_turbo_v2_5",
+            "accent": "en-british",
+            "locale": null,
+            "preview_url": "https://storage.googleapis.com/eleven-public-prod/database/user/wOihWO72HCYE3Hu7iR26d7eedAp1/voices/5gLuKtB16QIQv1vuSas1/CLdl5ZtFJegS008s8khW.mp3"
+        },
+        {
+            "language": "en",
+            "model_id": "eleven_v2_5_flash",
+            "accent": "en-british",
+            "locale": null,
+            "preview_url": "https://storage.googleapis.com/eleven-public-prod/database/user/wOihWO72HCYE3Hu7iR26d7eedAp1/voices/5gLuKtB16QIQv1vuSas1/CLdl5ZtFJegS008s8khW.mp3"
+        },
+        {
+            "language": "en",
+            "model_id": "eleven_flash_v2_5",
+            "accent": "en-british",
+            "locale": null,
+            "preview_url": "https://storage.googleapis.com/eleven-public-prod/database/user/wOihWO72HCYE3Hu7iR26d7eedAp1/voices/5gLuKtB16QIQv1vuSas1/CLdl5ZtFJegS008s8khW.mp3"
+        },
+        {
+            "language": "en",
+            "model_id": "eleven_turbo_v2",
+            "accent": "en-british",
+            "locale": null,
+            "preview_url": "https://storage.googleapis.com/eleven-public-prod/database/user/wOihWO72HCYE3Hu7iR26d7eedAp1/voices/5gLuKtB16QIQv1vuSas1/CLdl5ZtFJegS008s8khW.mp3"
+        },
+        {
+            "language": "en",
+            "model_id": "eleven_v2_flash",
+            "accent": "en-british",
+            "locale": null,
+            "preview_url": "https://storage.googleapis.com/eleven-public-prod/database/user/wOihWO72HCYE3Hu7iR26d7eedAp1/voices/5gLuKtB16QIQv1vuSas1/CLdl5ZtFJegS008s8khW.mp3"
+        },
+        {
+            "language": "en",
+            "model_id": "eleven_flash_v2",
+            "accent": "en-british",
+            "locale": null,
+            "preview_url": "https://storage.googleapis.com/eleven-public-prod/database/user/wOihWO72HCYE3Hu7iR26d7eedAp1/voices/5gLuKtB16QIQv1vuSas1/CLdl5ZtFJegS008s8khW.mp3"
+        },
+        {
+            "language": "en",
+            "model_id": "eleven_multilingual_v2",
+            "accent": "en-british",
+            "locale": null,
+            "preview_url": "https://storage.googleapis.com/eleven-public-prod/database/user/wOihWO72HCYE3Hu7iR26d7eedAp1/voices/5gLuKtB16QIQv1vuSas1/CLdl5ZtFJegS008s8khW.mp3"
+        }
+    ],
+    "notice_period": 730,
+    "instagram_username": null,
+    "twitter_username": null,
+    "youtube_username": null,
+    "tiktok_username": null,
+    "image_url": "",
+    "is_added_by_user": false
+}

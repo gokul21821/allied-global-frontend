@@ -1,0 +1,205 @@
+{
+  "edges": {
+    "edge_start_to_qualification": {
+      "source": "start_node",
+      "target": "lead_qualification_node",
+      "forward_condition": {
+        "type": "unconditional",
+        "label": null
+      },
+      "backward_condition": null
+    },
+    "edge_qualification_to_health": {
+      "source": "lead_qualification_node",
+      "target": "health_insurance_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Health insurance interest",
+        "condition": "The user expresses interest in health insurance, medical coverage, family health plans, or hospitalization coverage"
+      },
+      "backward_condition": null
+    },
+    "edge_qualification_to_life": {
+      "source": "lead_qualification_node",
+      "target": "life_insurance_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Life insurance interest",
+        "condition": "The user expresses interest in life insurance, financial protection for family, term insurance, or long term financial security"
+      },
+      "backward_condition": null
+    },
+    "edge_qualification_to_vehicle": {
+      "source": "lead_qualification_node",
+      "target": "vehicle_insurance_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Vehicle insurance interest",
+        "condition": "The user mentions car insurance, bike insurance, motor insurance, or vehicle coverage"
+      },
+      "backward_condition": null
+    },
+    "edge_health_to_lead_capture": {
+      "source": "health_insurance_node",
+      "target": "lead_capture_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Interested in health policy",
+        "condition": "The user shows interest in exploring or purchasing a health insurance plan"
+      },
+      "backward_condition": null
+    },
+    "edge_life_to_lead_capture": {
+      "source": "life_insurance_node",
+      "target": "lead_capture_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Interested in life policy",
+        "condition": "The user shows interest in exploring or purchasing a life insurance policy"
+      },
+      "backward_condition": null
+    },
+    "edge_vehicle_to_lead_capture": {
+      "source": "vehicle_insurance_node",
+      "target": "lead_capture_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Interested in vehicle policy",
+        "condition": "The user shows interest in exploring or purchasing a vehicle insurance policy"
+      },
+      "backward_condition": null
+    },
+    "edge_lead_capture_to_end": {
+      "source": "lead_capture_node",
+      "target": "sales_end_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Lead captured",
+        "condition": "End the conversation once the user's name, phone number, and interest in the insurance plan have been captured and confirmed"
+      },
+      "backward_condition": null
+    }
+  },
+  "nodes": {
+    "start_node": {
+      "type": "start",
+      "position": { "x": 0, "y": 0 },
+      "edge_order": ["edge_start_to_qualification"]
+    },
+    "lead_qualification_node": {
+      "type": "override_agent",
+      "label": "Insurance Lead Qualification Agent",
+      "position": { "x": 0, "y": 150 },
+      "edge_order": [
+        "edge_qualification_to_health",
+        "edge_qualification_to_life",
+        "edge_qualification_to_vehicle"
+      ],
+      "additional_prompt": "Greet the user and understand what type of insurance they are interested in. Ask questions to determine if they need health insurance, life insurance, or vehicle insurance. Your goal is to qualify the lead and guide them toward the appropriate insurance product.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "health_insurance_node": {
+      "type": "override_agent",
+      "label": "Health Insurance Sales Agent",
+      "position": { "x": -300, "y": 320 },
+      "edge_order": ["edge_health_to_lead_capture"],
+      "additional_prompt": "Explain the benefits of health insurance plans such as hospitalization coverage, family coverage, and medical protection. Answer questions and encourage the user to explore policy options.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "life_insurance_node": {
+      "type": "override_agent",
+      "label": "Life Insurance Sales Agent",
+      "position": { "x": 0, "y": 320 },
+      "edge_order": ["edge_life_to_lead_capture"],
+      "additional_prompt": "Explain life insurance options such as term insurance, financial protection for family, and long term financial security. Address user concerns and guide them toward considering a policy.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "vehicle_insurance_node": {
+      "type": "override_agent",
+      "label": "Vehicle Insurance Sales Agent",
+      "position": { "x": 300, "y": 320 },
+      "edge_order": ["edge_vehicle_to_lead_capture"],
+      "additional_prompt": "Explain vehicle insurance benefits including accident coverage, third-party liability, and vehicle damage protection. Encourage the user to request a quote or policy details.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "lead_capture_node": {
+      "type": "override_agent",
+      "label": "Lead Capture Agent",
+      "position": { "x": 0, "y": 520 },
+      "edge_order": ["edge_lead_capture_to_end"],
+      "additional_prompt": "Collect the user's name, phone number, and preferred insurance plan. Confirm the details and inform them that an insurance advisor will follow up with policy options and pricing.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "sales_end_node": {
+      "type": "end",
+      "position": { "x": 0, "y": 650 },
+      "edge_order": []
+    }
+  },
+  "prevent_subagent_loops": false
+}

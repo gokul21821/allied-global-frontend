@@ -1,0 +1,205 @@
+{
+  "edges": {
+    "edge_start_to_qualification": {
+      "source": "start_node",
+      "target": "booking_qualification_node",
+      "forward_condition": {
+        "type": "unconditional",
+        "label": null
+      },
+      "backward_condition": null
+    },
+    "edge_qualification_to_room_booking": {
+      "source": "booking_qualification_node",
+      "target": "room_selection_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "User wants to book a room",
+        "condition": "The user expresses interest in booking a hotel room, checking availability, or making a reservation"
+      },
+      "backward_condition": null
+    },
+    "edge_qualification_to_modify_booking": {
+      "source": "booking_qualification_node",
+      "target": "modify_booking_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Modify reservation",
+        "condition": "The user wants to modify an existing booking, change dates, or update their reservation"
+      },
+      "backward_condition": null
+    },
+    "edge_qualification_to_cancel_booking": {
+      "source": "booking_qualification_node",
+      "target": "cancel_booking_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Cancel reservation",
+        "condition": "The user wants to cancel an existing booking or reservation"
+      },
+      "backward_condition": null
+    },
+    "edge_room_selection_to_reservation": {
+      "source": "room_selection_node",
+      "target": "reservation_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Proceed to booking",
+        "condition": "The user confirms the room type and wants to proceed with booking"
+      },
+      "backward_condition": null
+    },
+    "edge_modify_to_end": {
+      "source": "modify_booking_node",
+      "target": "booking_end_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Modification complete",
+        "condition": "End the conversation once the booking changes have been successfully confirmed"
+      },
+      "backward_condition": null
+    },
+    "edge_cancel_to_end": {
+      "source": "cancel_booking_node",
+      "target": "booking_end_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Cancellation complete",
+        "condition": "End the conversation once the reservation has been cancelled and the user has been informed"
+      },
+      "backward_condition": null
+    },
+    "edge_reservation_to_end": {
+      "source": "reservation_node",
+      "target": "booking_end_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Reservation confirmed",
+        "condition": "End the conversation once the reservation details such as dates, room type, and guest name have been confirmed"
+      },
+      "backward_condition": null
+    }
+  },
+  "nodes": {
+    "start_node": {
+      "type": "start",
+      "position": { "x": 0, "y": 0 },
+      "edge_order": ["edge_start_to_qualification"]
+    },
+    "booking_qualification_node": {
+      "type": "override_agent",
+      "label": "Hotel Booking Qualification Agent",
+      "position": { "x": 0, "y": 150 },
+      "edge_order": [
+        "edge_qualification_to_room_booking",
+        "edge_qualification_to_modify_booking",
+        "edge_qualification_to_cancel_booking"
+      ],
+      "additional_prompt": "Greet the guest and understand their request. Determine whether they want to book a new room, modify an existing reservation, or cancel a booking.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "room_selection_node": {
+      "type": "override_agent",
+      "label": "Room Selection Agent",
+      "position": { "x": -200, "y": 320 },
+      "edge_order": ["edge_room_selection_to_reservation"],
+      "additional_prompt": "Ask the guest for check-in date, check-out date, number of guests, and preferred room type. Provide available room options and pricing.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "modify_booking_node": {
+      "type": "override_agent",
+      "label": "Modify Booking Agent",
+      "position": { "x": 0, "y": 320 },
+      "edge_order": ["edge_modify_to_end"],
+      "additional_prompt": "Help the guest modify their reservation. Ask for booking reference or name, then update dates, room type, or number of guests.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "cancel_booking_node": {
+      "type": "override_agent",
+      "label": "Cancel Booking Agent",
+      "position": { "x": 200, "y": 320 },
+      "edge_order": ["edge_cancel_to_end"],
+      "additional_prompt": "Assist the guest with cancelling their reservation. Ask for booking confirmation details and confirm cancellation before ending the conversation.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "reservation_node": {
+      "type": "override_agent",
+      "label": "Reservation Agent",
+      "position": { "x": -200, "y": 520 },
+      "edge_order": ["edge_reservation_to_end"],
+      "additional_prompt": "Collect the guest's name, contact information, and confirm booking details such as room type, check-in date, and check-out date. Confirm the reservation clearly.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "booking_end_node": {
+      "type": "end",
+      "position": { "x": 0, "y": 700 },
+      "edge_order": []
+    }
+  },
+  "prevent_subagent_loops": false
+}

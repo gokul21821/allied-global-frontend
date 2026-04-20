@@ -1,0 +1,205 @@
+{
+  "edges": {
+    "edge_start_to_triage": {
+      "source": "start_node",
+      "target": "triage_node",
+      "forward_condition": {
+        "type": "unconditional",
+        "label": null
+      },
+      "backward_condition": null
+    },
+    "edge_triage_to_general": {
+      "source": "triage_node",
+      "target": "general_physician_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "General consultation",
+        "condition": "The user needs a general checkup, fever consultation, mild symptoms, or does not know which specialist they need"
+      },
+      "backward_condition": null
+    },
+    "edge_triage_to_cardiology": {
+      "source": "triage_node",
+      "target": "cardiology_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Heart related issue",
+        "condition": "The user mentions heart pain, chest discomfort, blood pressure concerns, or cardiac-related symptoms"
+      },
+      "backward_condition": null
+    },
+    "edge_triage_to_dermatology": {
+      "source": "triage_node",
+      "target": "dermatology_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Skin issue",
+        "condition": "The user mentions skin issues such as rash, acne, itching, infection, or dermatological concerns"
+      },
+      "backward_condition": null
+    },
+    "edge_general_to_booking": {
+      "source": "general_physician_node",
+      "target": "booking_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Proceed to booking",
+        "condition": "The user confirms they want to book an appointment with a general physician"
+      },
+      "backward_condition": null
+    },
+    "edge_cardio_to_booking": {
+      "source": "cardiology_node",
+      "target": "booking_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Proceed to booking",
+        "condition": "The user confirms they want to book an appointment with a cardiologist"
+      },
+      "backward_condition": null
+    },
+    "edge_derma_to_booking": {
+      "source": "dermatology_node",
+      "target": "booking_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Proceed to booking",
+        "condition": "The user confirms they want to book an appointment with a dermatologist"
+      },
+      "backward_condition": null
+    },
+    "edge_booking_to_end": {
+      "source": "booking_node",
+      "target": "appointment_end_node",
+      "forward_condition": {
+        "type": "llm",
+        "label": "Booking complete",
+        "condition": "End the conversation once the appointment has been successfully scheduled and the user confirms the date and time"
+      },
+      "backward_condition": null
+    }
+  },
+  "nodes": {
+    "start_node": {
+      "type": "start",
+      "position": { "x": 0, "y": 0 },
+      "edge_order": ["edge_start_to_triage"]
+    },
+    "triage_node": {
+      "type": "override_agent",
+      "label": "Patient Triage Agent",
+      "position": { "x": 0, "y": 150 },
+      "edge_order": [
+        "edge_triage_to_general",
+        "edge_triage_to_cardiology",
+        "edge_triage_to_dermatology"
+      ],
+      "additional_prompt": "Ask the patient about their symptoms or the type of doctor they want to see. Determine whether they should see a general physician, cardiologist, or dermatologist before proceeding.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "general_physician_node": {
+      "type": "override_agent",
+      "label": "General Physician Agent",
+      "position": { "x": -300, "y": 320 },
+      "edge_order": ["edge_general_to_booking"],
+      "additional_prompt": "Help patients who need general consultation. Confirm symptoms and ask if they want to schedule an appointment with a general physician.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "cardiology_node": {
+      "type": "override_agent",
+      "label": "Cardiology Agent",
+      "position": { "x": 0, "y": 320 },
+      "edge_order": ["edge_cardio_to_booking"],
+      "additional_prompt": "Assist patients with heart-related symptoms. Confirm the need for a cardiology consultation before booking.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "dermatology_node": {
+      "type": "override_agent",
+      "label": "Dermatology Agent",
+      "position": { "x": 300, "y": 320 },
+      "edge_order": ["edge_derma_to_booking"],
+      "additional_prompt": "Assist patients with skin related issues. Confirm if they want to schedule an appointment with a dermatologist.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "booking_node": {
+      "type": "override_agent",
+      "label": "Appointment Booking Agent",
+      "position": { "x": 0, "y": 500 },
+      "edge_order": ["edge_booking_to_end"],
+      "additional_prompt": "Collect the patient's preferred date, time, doctor availability, and contact details. Confirm the appointment booking clearly before ending the conversation.",
+      "additional_knowledge_base": [],
+      "additional_tool_ids": [],
+      "conversation_config": {
+        "agent": {
+          "prompt": {
+            "prompt": null,
+            "llm": null,
+            "built_in_tools": {}
+          }
+        },
+        "tts": {
+          "voice_id": null
+        }
+      }
+    },
+    "appointment_end_node": {
+      "type": "end",
+      "position": { "x": 0, "y": 650 },
+      "edge_order": []
+    }
+  },
+  "prevent_subagent_loops": false
+}
