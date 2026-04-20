@@ -1601,7 +1601,7 @@ Sample Agent,"You are a helpful AI assistant.",gpt-4o,0.7,your_voice_id_here,ele
         )}
       </AnimatePresence>
 
-      <div className="bg-white dark:bg-dark-200 rounded-xl shadow-sm border border-gray-100 dark:border-dark-100 overflow-hidden">
+      <div className="bg-white dark:bg-dark-200 rounded-xl shadow-sm border border-gray-100 dark:border-dark-100 overflow-visible">
         {loadingAgents ? (
           <div className="p-8 flex justify-center items-center">
             <Loader2 className="w-6 h-6 animate-spin text-primary dark:text-primary-400" />
@@ -1705,7 +1705,7 @@ Sample Agent,"You are a helpful AI assistant.",gpt-4o,0.7,your_voice_id_here,ele
                         </div>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <div className="relative">
+                        <div className="relative z-30">
                           <button
                             onClick={(e) => {
                               e.preventDefault();
@@ -1732,7 +1732,7 @@ Sample Agent,"You are a helpful AI assistant.",gpt-4o,0.7,your_voice_id_here,ele
                                   setOpenMenuId(null);
                                 }}
                               />
-                              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-dark-200 rounded-lg shadow-lg border border-gray-200 dark:border-dark-100 py-1 z-20">
+                              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-dark-200 rounded-lg shadow-lg border border-gray-200 dark:border-dark-100 py-1 z-50">
                                 <button
                                   onClick={(e) => {
                                     e.preventDefault();
